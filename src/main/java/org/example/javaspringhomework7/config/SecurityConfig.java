@@ -22,13 +22,17 @@ public class SecurityConfig {
                         .requestMatchers("/css/**", "/favicon.ico", "/", "/home").permitAll()
                         .requestMatchers("/user").hasAnyRole("USER")
                         .requestMatchers("/admin").hasAnyRole("ADMIN")
+                        .requestMatchers("/private-data").hasAnyRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .formLogin(login -> login
                         .defaultSuccessUrl("/")
                         .permitAll())
                 .logout(logout -> logout
-                        .logoutSuccessUrl("/"));
+                        .logoutSuccessUrl("/"))
+                .exceptionHandling(exceptionHandling -> exceptionHandling
+                        .accessDeniedPage("/login")
+                );
         return http.build();
     }
 

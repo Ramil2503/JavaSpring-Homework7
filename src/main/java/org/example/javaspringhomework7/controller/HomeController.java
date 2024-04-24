@@ -45,4 +45,14 @@ public class HomeController {
         System.out.println(adminService.getText());
         return "admin";
     }
+
+    @GetMapping("public-data")
+    public String publicData(Model model) {
+        return "public-data";
+    }
+
+    @GetMapping("private-data")
+    public String privateData(Model model) {
+        return "private-data";
+    }
 }
